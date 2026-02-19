@@ -1,18 +1,14 @@
 name: Pipeline do site HTML
 
 on:
-  push:
-    branches: [ "master" ]
+  pull_request:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Baixar o código
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Verificar se o index.html existe
-        run: |
-          ls
-          test -f index.html
+      - name: Verificar se existe index.html
+        run: test -f index.html
